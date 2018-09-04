@@ -21,12 +21,21 @@ export class HeroService {
 
   getHeroes(): Observable<Hero[]> {
     this.messageService.add('HeroService: fetched heroes')
-    return this.http.get<Hero[]>(this.heroesUrl)
+    // return this.http.get<Hero[]>(this.heroesUrl)
+    return of([])
   }
 
   getHero(id: number): Observable<Hero> {
     this.messageService.add(`HeroService: fetched hero id=${id}`)
     const url = `${this.heroesUrl}/${id}`
-    return this.http.get<Hero>(url)
+    // return this.http.get<Hero>(url)
+    return of({
+      id: 1,
+      name: 'Thanh'
+    })
+  }
+
+  getPosts(): Observable<any> {
+    return this.http.get('https://www.reddit.com/r/reactjs.json')
   }
 }
